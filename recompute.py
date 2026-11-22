@@ -223,8 +223,14 @@ def build(edition: str = EDITION) -> tuple[list[dict], dict]:
     tiers = read_csv(d / "tiers.csv")
     period0 = {(r["line"], r["provider"]): r for r in read_csv(ROOT / "data" / PERIOD0 / "readings.csv")}
     causes: dict[tuple, dict] = {}
+    timing: dict[tuple, dict] = {}
     for ch in read_csv(d / "changes.csv"):
-        causes.setdefault((ch["line"], ch["provider"], ch["product"]), {})[ch["field"]] = ch["cause"]
+        key = (ch["line"], ch["provider"], ch["product"])
+        causes.setdefault(key, {})[ch["field"]] = ch["cause"]
+        if "price_change" in ch["cause"]:
+            if ch["timing"] not in TIMINGS:
+                raise SystemExit(f"changes.csv: {ch['provider']} / {ch['field']} needs timing {sorted(TIMINGS)}")
+            timing.setdefault(key, {})[ch["field"]] = (ch["timing"], archive_date(ch["prior_archive_url"]))
     rows = []
     for p in providers:
         opts = [t for t in tiers if t["line"] == p["line"] and t["provider"] == p["provider"]]
@@ -267,6 +273,7 @@ def build(edition: str = EDITION) -> tuple[list[dict], dict]:
             raise SystemExit(f"changes.csv: {r['provider']} / {r['product']} needs rows for {moved}, has {sorted(given)}")
         r["change"] = "+".join(sorted(set(given.values())))
         r["_causes"] = given
+        r["_timing"] = timing.get((r["line"], r["provider"], r["product"]), {})
     unchecked = sorted({r["provider"] for r in rows if r["verification"] == "none"})
     if unchecked:
         raise SystemExit("not verified against the archive: " + ", ".join(unchecked))
@@ -366,6 +373,9 @@ def headlines(rows: list[dict]) -> dict:
     ups = [r for r in third for f, cause in r.get("_causes", {}).items() if cause == "price_change"
            and r[f"period0_{f}_usd_per_1k"] is not None and r[f"{f}_usd_per_1k"] is not None
            and r[f"{f}_usd_per_1k"] > r[f"period0_{f}_usd_per_1k"]]
+    dated = [(r["provider"], t, day) for r in third for t, day in r.get("_timing", {}).values()]
+    by_timing = {t: sorted({p for p, tt, _ in dated if tt == t}) for t in sorted(TIMINGS)}
+    since = min((day for _, _, day in dated), default=PERIOD0)
     return {
         "edition": EDITION_LABEL, "read_date": READ_DATE_LABEL, "period0": PERIOD0,
         "providers": len(providers_all),
@@ -385,8 +395,29 @@ def headlines(rows: list[dict]) -> dict:
                     "hcaptcha_price_providers": sorted(r["provider"] for r in hc if r["listed"]),
                     "per_type": per_type},
         "differs_from_period0": len(differ), "differs_list": [f"{l}:{p}" for l, p in differ],
-        "price_changes": {"n": len(changed), "providers": changed, "increases": len(ups)},
+        "price_changes": {"n": len(changed), "providers": changed, "increases": len(ups),
+                          "since": since, "since_label": day_label(since),
+                          "after_previous_reading": by_timing["after"],
+                          "around_previous_reading": by_timing["around"],
+                          "before_previous_reading": by_timing["before"]},
     }
+
+
+MONTHS = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October",
+          "November", "December"]
+# when the change happened, compared with the previous reading (METHODOLOGY.md, section 10)
+TIMINGS = {"after", "around", "before"}
+
+
+def archive_date(url: str) -> str:
+    """'https://web.archive.org/web/20260913155539/...' -> '2026-09-13'."""
+    stamp = url.split("/web/")[1][:8]
+    return f"{stamp[:4]}-{stamp[4:6]}-{stamp[6:8]}"
+
+
+def day_label(day: str) -> str:
+    y, m, d = day.split("-")
+    return f"{int(d)} {MONTHS[int(m) - 1]} {y}"
 
 
 def sentences(h: dict) -> list[str]:
@@ -411,7 +442,8 @@ def sentences(h: dict) -> list[str]:
                f"price on their pricing page.")
     pc = h["price_changes"]
     direction = "every change was a decrease" if pc["increases"] == 0 else f"{pc['increases']} raised a price"
-    out.append(f"Since the previous reading on {P0_LABEL}, {pc['n']} of {h['providers']} providers changed an entry "
+    start = pc["since_label"].rsplit(" ", 1)[0] if pc["since_label"][-4:] == h["read_date"][-4:] else pc["since_label"]
+    out.append(f"Between {start} and {h['read_date']}, {pc['n']} of {h['providers']} providers changed an entry "
                f"or lowest price ({', '.join(pc['providers'])}); archived copies of the earlier pages confirm each "
                f"change, and {direction}.")
     return out

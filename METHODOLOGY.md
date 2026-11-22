@@ -84,7 +84,7 @@ otherwise `prepaid` if any pack exists, otherwise `subscription`.
 
 **Entry price** (`entry_usd_per_1k`). The price per 1,000 base calls on the paid option with the
 smallest minimum spend: the pay-as-you-go rate if one exists (its highest volume bracket, or the
-high end of a range that moves with load or volume), otherwise the cheapest one-time pack, otherwise
+high end of a range that the page gives for one product), otherwise the cheapest one-time pack, otherwise
 the cheapest monthly plan. A range across modes or endpoints is not a volume range: the base-call
 rule above applies, so the entry price and the lowest price both use its low end.
 **Lowest price** (`lowest_usd_per_1k`). The lowest price per 1,000 base calls among all paid
@@ -143,8 +143,8 @@ and Bing … cost 25, and LinkedIn costs 30").
   hCaptcha. The count includes NopeCHA and TrueCaptcha, which publish one plan or one price that is
   not split by type. Values that are in the page source but not displayed are not prices on the page
   (see 2Captcha in the decisions table).
-- A range (for example 2Captcha "reCAPTCHA v2 … $1 — $2.99 Price per 1000", which varies with
-  load) gives the high end as the entry price and the low end as the lowest price.
+- A range (for example 2Captcha "reCAPTCHA v2 … $1 — $2.99 Price per 1000"; the page does
+  not say what sets the price inside the range) gives the high end as the entry price and the low end as the lowest price.
 - Plans that are not tied to one type (NopeCHA's daily-solve plans) are in a sixth row, `any`.
 
 ## 7. Headline statistics
@@ -189,8 +189,9 @@ search for `data-usd` or `data-tiers`. We opened the replays of the other pages 
 level (SerpApi, Anti-Captcha, Bright Data Web Scraper) in a browser on 22 November 2026, and they
 show their prices.
 
-45 rows of `tiers.csv` are `MISSING`. None of them sets an entry or lowest price: they are larger
-plans that the page draws by script (AZcaptcha plan cards AZ2 to AZ12), kept for completeness.
+45 rows of `tiers.csv` are `MISSING`. None of them sets an entry or lowest price. 44 are larger
+plans that the page draws by script (AZcaptcha plan cards AZ2 to AZ12), kept for completeness, and
+one is the free tier of Bright Data Web Scraper.
 
 A lone short number ("1", "5") is not accepted as a match. `unsupported_values` in `tiers.csv` must
 be empty for every row used in the index: it lists a number of the row that no quote supports.
@@ -222,6 +223,23 @@ is the latest on or before 26 September 2026 (`prior_archive_url`), a quote from
 | `unverified` | no earlier copy shows the period-0 price |
 
 Only `price_change` rows are counted as price changes in the report.
+
+The earlier copy is older than the previous reading, so a `price_change` row also has a `timing`:
+
+| Timing | Meaning |
+|---|---|
+| `after` | a copy dated after 26 September 2026 still shows the higher price, so the price fell after the previous reading |
+| `around` | the price fell between two copies, one before and one after 26 September 2026; the archives cannot place it on either side |
+| `before` | the provider's own records date the change before 26 September 2026; the previous reading recorded a price that was already out of date |
+
+The headline sentence counts all three. It starts at the date of the oldest earlier copy that it
+uses, not at the previous reading. In this edition that date is 13 September 2026: two changes are
+`after` (Oxylabs Web Scraper, ScrapingBee), one is `around` (Exa, between 19 and 29 September) and
+one is `before` (Perplexity, 24 September).
+
+A price that the nearest earlier copy shows lower than today, and that period 0 recorded at another
+figure, stays `unverified`: AZcaptcha Turnstile was $0.90 in the copy of 9 June 2026 and is $1.00
+now, and no copy dates that rise.
 
 ## 11. Known limits
 
@@ -258,7 +276,7 @@ and are reproduced only so that readers can verify each number. `recompute.py` i
 | Jina, Capzy | The pages load prices from a data address after they open; the archived pages show no price | The archived copy of the data address is the reference for the check (section 8) |
 | Perplexity | Two search modes: standard $5.00 and Fast Search $1.00, "Lower-latency results in the same response format" | Base call is Fast Search ($1.00); standard is a recorded variant |
 | Oxylabs (Google) | Separate prices with and without JavaScript rendering | Base call is the non-JavaScript request |
-| Linkup | One range "$0.005 - $0.006" for three modes | Base call uses $0.005 |
+| Linkup | The pricing page gives one range, "$0.005 - $0.006", for Fast, Standard and Deep search. Linkup's documentation prices deep search at $0.05 a request | Base call uses $0.005, the low end of the range on the pricing page; the documentation price for deep search is not on the pricing page and is not used |
 | TikHub | Per-request range "$0.001 – $0.01" across endpoints | Base call uses $0.001; the range is a multiplier note |
 | AZcaptcha | The page says "No subscriptions" and also sells AZ1–AZ12 monthly plans; the rate table has a second price column under "Plan from $24.9/month" | The plans are self-serve monthly options and are included at the rate of that column; the contradiction is noted |
 | CapSolver | Prices "USD / 1000 tokens" without a definition of token | Read as 1,000 solved tasks |

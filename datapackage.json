@@ -466,7 +466,7 @@
     {
       "name": "changes",
       "path": "data/2026-q4/changes.csv",
-      "description": "One row per price that differs from the reading of 26 September 2026, with its cause and an earlier archived copy.",
+      "description": "One row per price that differs from the reading of 26 September 2026, with its cause, its timing and an earlier archived copy.",
       "format": "csv",
       "mediatype": "text/csv",
       "encoding": "utf-8",
@@ -502,6 +502,11 @@
             "name": "cause",
             "type": "string",
             "description": "price_change, rule or unverified (see METHODOLOGY.md, section 10)"
+          },
+          {
+            "name": "timing",
+            "type": "string",
+            "description": "For a price_change row: after, around or before the previous reading (see METHODOLOGY.md, section 10)"
           },
           {
             "name": "prior_archive_url",

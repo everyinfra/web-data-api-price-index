@@ -11,7 +11,7 @@ Entry prices run from $0.50 (Jina, converted from token pricing) to $25.00 (Serp
 APIs that return Google results have a median entry price of $1.75 (n = 8); web search APIs built for AI have $5.00 (n = 8).
 6 of 16 search APIs and 6 of 10 scraping and platform-data APIs can only be bought as a monthly subscription.
 10 of 13 CAPTCHA solvers show no hCaptcha price on their pricing page.
-Since the previous reading on 26 September 2026, 4 of 39 providers changed an entry or lowest price (Exa, Oxylabs Web Scraper, Perplexity, ScrapingBee); archived copies of the earlier pages confirm each change, and every change was a decrease.
+Between 13 September and 22 November 2026, 4 of 39 providers changed an entry or lowest price (Exa, Oxylabs Web Scraper, Perplexity, ScrapingBee); archived copies of the earlier pages confirm each change, and every change was a decrease.
 <!-- HEADLINE:END -->
 
 The text between the two markers above is written by `recompute.py`. A check on every commit
