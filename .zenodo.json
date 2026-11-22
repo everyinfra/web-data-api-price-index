@@ -1,0 +1,14 @@
+{
+  "title": "Web Data API Price Index, Q4 2026",
+  "upload_type": "dataset",
+  "description": "Published list prices of 39 search, scraping and CAPTCHA APIs, read from their public pricing pages on 22 November 2026 and converted to US dollars per 1,000 calls. Each number has the page quote it comes from, the read time (Singapore time) and a same-day Wayback Machine copy of the page. A standard-library Python script recomputes every headline number from the raw tables. The publisher, EveryInfra, also sells APIs of these three kinds; its rows are marked and are not part of any headline number.",
+  "creators": [{"name": "EveryInfra"}],
+  "version": "2026.Q4",
+  "license": "cc-by-4.0",
+  "access_right": "open",
+  "language": "eng",
+  "keywords": ["API pricing", "search API", "web scraping API", "CAPTCHA solver", "price index"],
+  "related_identifiers": [
+    {"identifier": "https://github.com/everyinfra/web-data-api-price-index", "relation": "isSupplementTo", "scheme": "url"}
+  ]
+}

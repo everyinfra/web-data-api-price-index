@@ -1,0 +1,599 @@
+{
+  "name": "web-data-api-price-index",
+  "title": "Web Data API Price Index, Q4 2026",
+  "description": "Published list prices of 39 search, scraping and CAPTCHA APIs, read on 22 November 2026 and converted to US dollars per 1,000 calls.",
+  "version": "2026.Q4",
+  "created": "2026-11-22T13:19:50Z",
+  "homepage": "https://github.com/everyinfra/web-data-api-price-index",
+  "licenses": [
+    {
+      "name": "CC-BY-4.0",
+      "path": "https://creativecommons.org/licenses/by/4.0/",
+      "title": "Creative Commons Attribution 4.0"
+    }
+  ],
+  "contributors": [
+    {
+      "title": "EveryInfra",
+      "role": "publisher",
+      "path": "https://everyinfra.com"
+    }
+  ],
+  "keywords": [
+    "API pricing",
+    "search API",
+    "web scraping API",
+    "CAPTCHA solver",
+    "price index"
+  ],
+  "resources": [
+    {
+      "name": "index",
+      "path": "data/2026-q4/index.csv",
+      "description": "One row per provider and product: entry and lowest price in US dollars per 1,000 calls, billing, source and archive.",
+      "format": "csv",
+      "mediatype": "text/csv",
+      "encoding": "utf-8",
+      "schema": {
+        "fields": [
+          {
+            "name": "line",
+            "type": "string",
+            "description": "search, data or captcha"
+          },
+          {
+            "name": "provider",
+            "type": "string",
+            "description": "Provider name"
+          },
+          {
+            "name": "source_url",
+            "type": "string",
+            "description": "Address of the public pricing page"
+          },
+          {
+            "name": "read_at",
+            "type": "string",
+            "description": "Time the page was read, Singapore time (UTC+8), to the minute"
+          },
+          {
+            "name": "unit",
+            "type": "string",
+            "description": "What one call is: request, result, record or solve"
+          },
+          {
+            "name": "entry_usd_per_1k",
+            "type": "number",
+            "description": "US dollars per 1,000 calls on the paid option with the smallest minimum payment"
+          },
+          {
+            "name": "lowest_usd_per_1k",
+            "type": "number",
+            "description": "Lowest US dollars per 1,000 calls among all paid self-serve options"
+          },
+          {
+            "name": "billing",
+            "type": "string",
+            "description": "payg, prepaid or subscription (see METHODOLOGY.md, section 4)"
+          },
+          {
+            "name": "min_payment_usd",
+            "type": "number",
+            "description": "Smallest amount a new customer must pay, in US dollars; blank if the page does not say"
+          },
+          {
+            "name": "failed_calls_charged",
+            "type": "string",
+            "description": "true, false or partial, only if the page says so; blank otherwise"
+          },
+          {
+            "name": "archive_url",
+            "type": "string",
+            "description": "Wayback Machine copy of the page, saved on the read date"
+          },
+          {
+            "name": "product",
+            "type": "string"
+          },
+          {
+            "name": "segment",
+            "type": "string"
+          },
+          {
+            "name": "publisher",
+            "type": "boolean",
+            "description": "true for the rows of the publisher (EveryInfra); these rows are not part of any headline number"
+          },
+          {
+            "name": "listed",
+            "type": "boolean"
+          },
+          {
+            "name": "subscription_only",
+            "type": "boolean"
+          },
+          {
+            "name": "derived",
+            "type": "boolean",
+            "description": "true if the price needs more than dividing a published price by published units"
+          },
+          {
+            "name": "conversion",
+            "type": "string"
+          },
+          {
+            "name": "usd_per_1k_at_10k",
+            "type": "number"
+          },
+          {
+            "name": "usd_per_1k_at_100k",
+            "type": "number"
+          },
+          {
+            "name": "usd_per_1k_at_1m",
+            "type": "number"
+          },
+          {
+            "name": "entry_option",
+            "type": "string"
+          },
+          {
+            "name": "entry_billing",
+            "type": "string"
+          },
+          {
+            "name": "lowest_option",
+            "type": "string"
+          },
+          {
+            "name": "lowest_billing",
+            "type": "string"
+          },
+          {
+            "name": "price_quote",
+            "type": "string"
+          },
+          {
+            "name": "lowest_quote",
+            "type": "string"
+          },
+          {
+            "name": "verification",
+            "type": "string",
+            "description": "page: checked by script on the archived page; data: checked on the archived data address of the page"
+          },
+          {
+            "name": "period0_entry_usd_per_1k",
+            "type": "number"
+          },
+          {
+            "name": "period0_lowest_usd_per_1k",
+            "type": "number"
+          },
+          {
+            "name": "change",
+            "type": "string",
+            "description": "Comparison with period 0: same, new, new row, not comparable, or the cause from changes.csv"
+          }
+        ],
+        "missingValues": [
+          ""
+        ]
+      }
+    },
+    {
+      "name": "tiers",
+      "path": "data/2026-q4/tiers.csv",
+      "description": "One row per published way to pay, with the exact text from the pricing page and the result of the archive check.",
+      "format": "csv",
+      "mediatype": "text/csv",
+      "encoding": "utf-8",
+      "schema": {
+        "fields": [
+          {
+            "name": "line",
+            "type": "string",
+            "description": "search, data or captcha"
+          },
+          {
+            "name": "provider",
+            "type": "string",
+            "description": "Provider name"
+          },
+          {
+            "name": "product",
+            "type": "string"
+          },
+          {
+            "name": "option",
+            "type": "string"
+          },
+          {
+            "name": "billing",
+            "type": "string",
+            "description": "payg, prepaid or subscription (see METHODOLOGY.md, section 4)"
+          },
+          {
+            "name": "price_usd",
+            "type": "number"
+          },
+          {
+            "name": "units",
+            "type": "number"
+          },
+          {
+            "name": "unit",
+            "type": "string",
+            "description": "What one call is: request, result, record or solve"
+          },
+          {
+            "name": "usd_per_1k",
+            "type": "number"
+          },
+          {
+            "name": "usd_per_1k_max",
+            "type": "number"
+          },
+          {
+            "name": "units_per_call",
+            "type": "number"
+          },
+          {
+            "name": "overage_usd_per_1k",
+            "type": "number"
+          },
+          {
+            "name": "async",
+            "type": "boolean"
+          },
+          {
+            "name": "annual_only",
+            "type": "boolean"
+          },
+          {
+            "name": "listed",
+            "type": "boolean"
+          },
+          {
+            "name": "price_original",
+            "type": "string"
+          },
+          {
+            "name": "currency_original",
+            "type": "string"
+          },
+          {
+            "name": "assumption",
+            "type": "string"
+          },
+          {
+            "name": "page",
+            "type": "string"
+          },
+          {
+            "name": "quote",
+            "type": "string",
+            "description": "Exact text from the pricing page"
+          },
+          {
+            "name": "quote2",
+            "type": "string"
+          },
+          {
+            "name": "archive_check",
+            "type": "string",
+            "description": "Result of the script check against the archived copy (see METHODOLOGY.md, section 8)"
+          },
+          {
+            "name": "unsupported_values",
+            "type": "number"
+          },
+          {
+            "name": "evidence_page",
+            "type": "string"
+          },
+          {
+            "name": "evidence_quote",
+            "type": "string"
+          },
+          {
+            "name": "note",
+            "type": "string"
+          }
+        ],
+        "missingValues": [
+          ""
+        ]
+      }
+    },
+    {
+      "name": "providers",
+      "path": "data/2026-q4/providers.csv",
+      "description": "One row per provider and line: billing facts quoted from the pricing page.",
+      "format": "csv",
+      "mediatype": "text/csv",
+      "encoding": "utf-8",
+      "schema": {
+        "fields": [
+          {
+            "name": "line",
+            "type": "string",
+            "description": "search, data or captcha"
+          },
+          {
+            "name": "provider",
+            "type": "string",
+            "description": "Provider name"
+          },
+          {
+            "name": "publisher",
+            "type": "boolean",
+            "description": "true for the rows of the publisher (EveryInfra); these rows are not part of any headline number"
+          },
+          {
+            "name": "source_url",
+            "type": "string",
+            "description": "Address of the public pricing page"
+          },
+          {
+            "name": "page",
+            "type": "string"
+          },
+          {
+            "name": "call_unit",
+            "type": "string"
+          },
+          {
+            "name": "segment",
+            "type": "string"
+          },
+          {
+            "name": "segment_quote",
+            "type": "string"
+          },
+          {
+            "name": "min_topup_usd",
+            "type": "number"
+          },
+          {
+            "name": "min_topup_quote",
+            "type": "string"
+          },
+          {
+            "name": "failed_calls_charged",
+            "type": "string",
+            "description": "true, false or partial, only if the page says so; blank otherwise"
+          },
+          {
+            "name": "failed_calls_quote",
+            "type": "string"
+          },
+          {
+            "name": "free_units",
+            "type": "string"
+          },
+          {
+            "name": "free_quote",
+            "type": "string"
+          },
+          {
+            "name": "has_sales_tier",
+            "type": "boolean"
+          },
+          {
+            "name": "annual_default",
+            "type": "boolean"
+          },
+          {
+            "name": "typical_multiplier",
+            "type": "string"
+          },
+          {
+            "name": "multiplier_quote",
+            "type": "string"
+          },
+          {
+            "name": "service_notice",
+            "type": "string"
+          },
+          {
+            "name": "notes",
+            "type": "string"
+          }
+        ],
+        "missingValues": [
+          ""
+        ]
+      }
+    },
+    {
+      "name": "pages",
+      "path": "data/2026-q4/pages.csv",
+      "description": "One row per page read: address, read time (SGT), SHA-256 of the rendered text, Wayback Machine copy.",
+      "format": "csv",
+      "mediatype": "text/csv",
+      "encoding": "utf-8",
+      "schema": {
+        "fields": [
+          {
+            "name": "page",
+            "type": "string"
+          },
+          {
+            "name": "url",
+            "type": "string"
+          },
+          {
+            "name": "read_at",
+            "type": "string",
+            "description": "Time the page was read, Singapore time (UTC+8), to the minute"
+          },
+          {
+            "name": "vantage",
+            "type": "string"
+          },
+          {
+            "name": "rendered_text_sha256",
+            "type": "string"
+          },
+          {
+            "name": "archive_url",
+            "type": "string",
+            "description": "Wayback Machine copy of the page, saved on the read date"
+          },
+          {
+            "name": "archive_timestamp",
+            "type": "number"
+          },
+          {
+            "name": "archive_replay_status",
+            "type": "number"
+          },
+          {
+            "name": "archive_raw_status",
+            "type": "number"
+          },
+          {
+            "name": "archive_note",
+            "type": "string"
+          }
+        ],
+        "missingValues": [
+          ""
+        ]
+      }
+    },
+    {
+      "name": "changes",
+      "path": "data/2026-q4/changes.csv",
+      "description": "One row per price that differs from the reading of 26 September 2026, with its cause and an earlier archived copy.",
+      "format": "csv",
+      "mediatype": "text/csv",
+      "encoding": "utf-8",
+      "schema": {
+        "fields": [
+          {
+            "name": "line",
+            "type": "string",
+            "description": "search, data or captcha"
+          },
+          {
+            "name": "provider",
+            "type": "string",
+            "description": "Provider name"
+          },
+          {
+            "name": "product",
+            "type": "string"
+          },
+          {
+            "name": "field",
+            "type": "string"
+          },
+          {
+            "name": "period0_usd_per_1k",
+            "type": "number"
+          },
+          {
+            "name": "usd_per_1k",
+            "type": "number"
+          },
+          {
+            "name": "cause",
+            "type": "string",
+            "description": "price_change, rule or unverified (see METHODOLOGY.md, section 10)"
+          },
+          {
+            "name": "prior_archive_url",
+            "type": "string"
+          },
+          {
+            "name": "prior_quote",
+            "type": "string"
+          },
+          {
+            "name": "note",
+            "type": "string"
+          }
+        ],
+        "missingValues": [
+          ""
+        ]
+      }
+    },
+    {
+      "name": "period0",
+      "path": "data/2026-09-26/readings.csv",
+      "description": "The reading of 26 September 2026 (period 0), as published on everyinfra.com.",
+      "format": "csv",
+      "mediatype": "text/csv",
+      "encoding": "utf-8",
+      "schema": {
+        "fields": [
+          {
+            "name": "line",
+            "type": "string",
+            "description": "search, data or captcha"
+          },
+          {
+            "name": "provider",
+            "type": "string",
+            "description": "Provider name"
+          },
+          {
+            "name": "source_url",
+            "type": "string",
+            "description": "Address of the public pricing page"
+          },
+          {
+            "name": "unit",
+            "type": "string",
+            "description": "What one call is: request, result, record or solve"
+          },
+          {
+            "name": "entry_usd_per_1k",
+            "type": "string",
+            "description": "US dollars per 1,000 calls on the paid option with the smallest minimum payment"
+          },
+          {
+            "name": "lowest_usd_per_1k",
+            "type": "string",
+            "description": "Lowest US dollars per 1,000 calls among all paid self-serve options"
+          },
+          {
+            "name": "billing",
+            "type": "string",
+            "description": "payg, prepaid or subscription (see METHODOLOGY.md, section 4)"
+          },
+          {
+            "name": "entry_purchase_usd",
+            "type": "number"
+          },
+          {
+            "name": "v2_usd_per_1k",
+            "type": "string"
+          },
+          {
+            "name": "v3_usd_per_1k",
+            "type": "string"
+          },
+          {
+            "name": "turnstile_usd_per_1k",
+            "type": "number"
+          },
+          {
+            "name": "hcaptcha_usd_per_1k",
+            "type": "number"
+          },
+          {
+            "name": "image_usd_per_1k",
+            "type": "string"
+          }
+        ],
+        "missingValues": [
+          ""
+        ]
+      }
+    }
+  ]
+}

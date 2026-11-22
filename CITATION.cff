@@ -1,0 +1,22 @@
+cff-version: 1.2.0
+message: "If you use this dataset, please cite it as below."
+type: dataset
+title: "Web Data API Price Index, Q4 2026"
+abstract: >-
+  Published list prices of 39 search, scraping and CAPTCHA APIs, read from their public pricing
+  pages on 22 November 2026 and converted to US dollars per 1,000 calls. Each number has the page
+  quote it comes from, the read time and a same-day Wayback Machine copy of the page.
+authors:
+  - name: "EveryInfra"
+    website: "https://everyinfra.com"
+version: "2026.Q4"
+date-released: "2026-11-22"
+license: CC-BY-4.0
+repository-code: "https://github.com/everyinfra/web-data-api-price-index"
+url: "https://everyinfra.com"
+keywords:
+  - API pricing
+  - search API
+  - web scraping API
+  - CAPTCHA solver
+  - price index

@@ -1,0 +1,40 @@
+line,provider,source_url,unit,entry_usd_per_1k,lowest_usd_per_1k,billing,entry_purchase_usd,v2_usd_per_1k,v3_usd_per_1k,turnstile_usd_per_1k,hcaptcha_usd_per_1k,image_usd_per_1k
+search,Serper,https://serper.dev/#pricing,request,1,0.3,prepaid,50,,,,,
+search,SerpApi,https://serpapi.com/pricing,request,25,1.96,subscription,25,,,,,
+search,Tavily,https://www.tavily.com/pricing,request,7.5,5,subscription,30,,,,,
+search,Exa,https://exa.ai/pricing,request,7,7,payg,,,,,,
+search,Brave,https://brave.com/search/api/,request,5,5,payg,,,,,,
+search,Perplexity,https://docs.perplexity.ai/docs/getting-started/pricing,request,5,1,payg,,,,,,
+search,Jina,https://jina.ai/reader/,request,0.5,0.45,prepaid,50,,,,,
+search,Firecrawl Search,https://www.firecrawl.dev/pricing,request,7.6,1.2,subscription,19,,,,,
+search,Linkup,https://www.linkup.so/pricing,request,5,5,payg,,,,,,
+search,You.com,https://you.com/pricing,request,5,5,payg,,,,,,
+search,DataForSEO,https://dataforseo.com/pricing/serp/google-organic-serp-api,serp,2,0.6,prepaid,50,,,,,
+search,SearchApi.io,https://www.searchapi.io/pricing,request,4,1,subscription,40,,,,,
+search,Bright Data SERP,https://brightdata.com/pricing/serp,request,1.5,1,payg,,,,,,
+search,Oxylabs (Google),https://oxylabs.io/products/scraper-api/web/pricing,serp,1,0.5,subscription,49,,,,,
+search,Scrapingdog,https://www.scrapingdog.com/pricing/,request,1,0.136,subscription,40,,,,,
+search,Zenserp,https://zenserp.com/pricing-plans/,request,2,0.9,subscription,49.99,,,,,
+data,Apify Store,https://apify.com/store/categories/social-media-scrapers,result,0.4-5,0.3-3,subscription,19,,,,,
+data,Bright Data Web Scraper,https://brightdata.com/pricing/web-scraper,result,1.5,1.1,payg,,,,,,
+data,TikHub,https://tikhub.io/pricing,request,1,0.5,prepaid,5,,,,,
+data,Firecrawl,https://www.firecrawl.dev/pricing,page,3.8,0.599,subscription,19,,,,,
+data,ScraperAPI,https://www.scraperapi.com/pricing/,credit,0.49,0.083,subscription,49,,,,,
+data,ScrapeCreators,https://scrapecreators.com/#pricing,request,1.88,0.99,prepaid,47,,,,,
+data,EnsembleData,https://ensembledata.com/pricing,unit,2.22,0.93,subscription,100,,,,,
+data,ScrapingBee,https://www.scrapingbee.com/pricing/,credit,0.253,0.075,subscription,19,,,,,
+data,Oxylabs Web Scraper,https://oxylabs.io/products/scraper-api/web/pricing,page,1.15,0.25,subscription,49,,,,,
+data,Zyte,https://www.zyte.com/pricing/,page,0.13,0.06,payg,,,,,,
+captcha,2Captcha,https://2captcha.com/pricing,solve,,,loadBased,,1-2.99,1.45-2.99,1.45,,0.5-1
+captcha,CapSolver,https://docs.capsolver.com/en/pricing/,solve,,,payg,,0.8,1,1.2,,0.4
+captcha,Anti-Captcha,https://anti-captcha.com/,solve,,,payg,,0.95-2,1-2,2,,0.5-0.7
+captcha,CapMonster,https://capmonster.cloud/en/prices/,solve,,,payg,,0.6,0.9,1.3,,0.3
+captcha,DeathByCaptcha,https://deathbycaptcha.com/user-pay,solve,,,prepaid,6.95,2.89,2.89,2.89,,0.99-2
+captcha,NextCaptcha,https://nextcaptcha.com/price,solve,,,payg,,0.5,0.6-1,0.6,,
+captcha,SolveCaptcha,https://solvecaptcha.com/pricing,solve,,,loadBased,,0.55,0.8,0.8,,0.35
+captcha,EzCaptcha,https://www.ez-captcha.com/,solve,,,payg,,0.6,1,1,3,
+captcha,Capzy,https://capzy.ai/solvers,solve,,,payg,,1,1,1.2,,0.8
+captcha,AZcaptcha,https://azcaptcha.com/pricing,solve,,,prepaid,5,1,1,1.2,,0.4
+captcha,BestCaptchaSolver,https://bestcaptchasolver.com/order,solve,,,payg,,2,2,1.8,2,0.6
+captcha,TrueCaptcha,https://truecaptcha.org/,solve,,,prepaid,1,,,,,0.33
+captcha,NopeCHA,https://nopecha.com/pricing,solve,,,subscription,4.99,,,,,
