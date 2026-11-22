@@ -470,7 +470,7 @@ def captcha_sentence(rs: list[dict]) -> str:
     if parts:
         text = f"{name}, per 1,000 solves at entry: " + ", ".join(parts) + "."
         if missing:
-            text += " No price listed for " + ", ".join(missing) + "."
+            text += " No price shown for " + ", ".join(missing) + "."
         return text
     if other:
         r = other[0]
