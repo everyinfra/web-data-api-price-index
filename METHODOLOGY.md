@@ -182,6 +182,13 @@ the archived copy of that address. Their numbers are therefore checked by script
 opens `archive_url` in a browser does not see the price on the page. `headlines.json` →
 `strict` gives the headline numbers without these two providers.
 
+One more page needs the source view. The Bright Data SERP page keeps its prices in `data-usd` and
+`data-tiers` attributes; in the Wayback Machine replay the price slots stay empty ("$ /1K
+requests"). The numbers are in the archived HTML: open `archive_url`, view the page source and
+search for `data-usd` or `data-tiers`. We opened the replays of the other pages checked at source
+level (SerpApi, Anti-Captcha, Bright Data Web Scraper) in a browser on 22 November 2026, and they
+show their prices.
+
 45 rows of `tiers.csv` are `MISSING`. None of them sets an entry or lowest price: they are larger
 plans that the page draws by script (AZcaptcha plan cards AZ2 to AZ12), kept for completeness.
 
