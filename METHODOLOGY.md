@@ -235,7 +235,7 @@ The earlier copy is older than the previous reading, so a `price_change` row als
 The headline sentence counts all three. It starts at the date of the oldest earlier copy that it
 uses, not at the previous reading. In this edition that date is 13 September 2026: two changes are
 `after` (Oxylabs Web Scraper, ScrapingBee), one is `around` (Exa, between 19 and 29 September) and
-one is `before` (Perplexity, 24 September).
+one is `before` (Perplexity, 24 September; the `note` column of `changes.csv` gives the announcement and the two changelog copies that date it).
 
 A price that the nearest earlier copy shows lower than today, and that period 0 recorded at another
 figure, stays `unverified`: AZcaptcha Turnstile was $0.90 in the copy of 9 June 2026 and is $1.00
