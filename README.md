@@ -17,6 +17,9 @@ Between 13 September and 22 November 2026, 4 of 39 providers changed an entry or
 The text between the two markers above is written by `recompute.py`. A check on every commit
 fails if it does not match the tables.
 
+The same tables are on Hugging Face as a dataset:
+<https://huggingface.co/datasets/everyinfra/web-data-api-price-index>.
+
 ## What you can do with it
 
 - Quote a number. Each number has the exact text from the provider's page, the time we read the
