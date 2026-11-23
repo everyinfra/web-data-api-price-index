@@ -19,6 +19,9 @@ fails if it does not match the tables.
 
 The same tables are on Hugging Face as a dataset:
 <https://huggingface.co/datasets/everyinfra/web-data-api-price-index>.
+Zenodo keeps a copy of this edition with a DOI: <https://doi.org/10.5281/zenodo.24453414>.
+The report that explains the numbers is at
+<https://everyinfra.com/en/research/web-data-api-price-index>.
 
 ## What you can do with it
 
@@ -84,9 +87,11 @@ to partners@everyinfra.com. We reply within two business days. Each correction i
 ## Cite
 
 ```text
-EveryInfra (2026). Web Data API Price Index, Q4 2026. https://github.com/everyinfra/web-data-api-price-index
+EveryInfra (2026). Web Data API Price Index, Q4 2026 (version 2026.Q4) [Data set]. Zenodo. https://doi.org/10.5281/zenodo.24453414
 ```
 
+This DOI is for the Q4 2026 edition. To cite the index without naming an edition, use
+<https://doi.org/10.5281/zenodo.24453413>, which always opens the latest edition.
 `CITATION.cff` has the same data in machine-readable form.
 
 ## Licence

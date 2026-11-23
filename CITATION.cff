@@ -11,9 +11,10 @@ authors:
     website: "https://everyinfra.com"
 version: "2026.Q4"
 date-released: "2026-11-22"
+doi: 10.5281/zenodo.24453414
 license: CC-BY-4.0
 repository-code: "https://github.com/everyinfra/web-data-api-price-index"
-url: "https://everyinfra.com"
+url: "https://everyinfra.com/en/research/web-data-api-price-index"
 keywords:
   - API pricing
   - search API
