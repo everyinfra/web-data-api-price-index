@@ -25,4 +25,12 @@ Each correction gets a new version and a line here. Report an error in a GitHub 
 
 ## Corrections
 
-None yet.
+- 23 November 2026, before the 2026.Q4 release was tagged. The EveryInfra (publisher) rows now have a minimum
+  payment of $10: `min_payment_usd` in `index.csv`, `min_topup_usd` and `min_topup_quote` in
+  `providers.csv`. The EveryInfra pricing page did not state a minimum top-up when it was read on
+  22 November 2026, so the field was blank, as it is for every provider whose page is silent. The
+  smallest top-up in the customer console was already $10. The publisher then added the sentence
+  "Each top-up must be at least $10." to the pricing page, and the rows quote it. The archived copy of
+  22 November 2026 does not have the sentence; this later copy has it:
+  https://web.archive.org/web/20261123030208/https://everyinfra.com/en/pricing. No price and no
+  headline number changed.
